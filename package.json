@@ -1,0 +1,29 @@
+{
+  "name": "reactcodes",
+  "version": "1.0.0",
+  "description": "React CodeBase",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/subham-kumar-sah/reactCodes.git"
+  },
+  "author": "Subham Sah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/subham-kumar-sah/reactCodes/issues"
+  },
+  "homepage": "https://github.com/subham-kumar-sah/reactCodes#readme",
+  "devDependencies": {
+    "parcel": "^2.11.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

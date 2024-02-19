@@ -1,0 +1,23 @@
+.heading {
+  background-color: red;
+}
+
+.header {
+  text-align: center;
+  height: 30px;
+  display: flex;
+}
+
+.icon {
+  width: 30px;
+}
+
+.searchBar {
+  border-radius: 20px;
+}
+
+.userIcon {
+  display: inline-block;
+}
+
+/*# sourceMappingURL=index.1303bb05.css.map */

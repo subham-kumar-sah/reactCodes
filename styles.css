@@ -1,0 +1,21 @@
+.heading{
+    background-color: red;
+}
+
+.header{
+    display: flex;
+    height: 30;
+    text-align: center;
+}
+
+.icon{
+    width: 30;
+}
+
+.searchBar{
+    border-radius: 20px;
+}
+
+.userIcon{
+    display: inline-block;
+}
