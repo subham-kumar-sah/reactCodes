@@ -3019,22 +3019,22 @@ const HeaderComponent = ()=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDev
                     lineNumber: 84,
                     columnNumber: 7
                 }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    src: "https://img.icons8.com/?size=32&id=22396&format=png",
-                    alt: "User Icon",
-                    className: "userIcon"
-                }, void 0, false, {
-                    fileName: "App.js",
-                    lineNumber: 89,
-                    columnNumber: 7
-                }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
                     className: "searchBar",
                     type: "text",
                     placeholder: "Search Here"
                 }, void 0, false, {
                     fileName: "App.js",
-                    lineNumber: 94,
+                    lineNumber: 89,
+                    columnNumber: 7
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    src: "https://img.icons8.com/?size=32&id=22396&format=png",
+                    alt: "User Icon",
+                    className: "userIcon"
+                }, void 0, false, {
+                    fileName: "App.js",
+                    lineNumber: 90,
                     columnNumber: 7
                 }, undefined)
             ]

@@ -86,12 +86,12 @@ const HeaderComponent = () => (
         alt="Facebook Icon"
         className="icon"
       ></img>
+      <input className="searchBar" type="text" placeholder="Search Here" />
       <img
         src="https://img.icons8.com/?size=32&id=22396&format=png"
         alt="User Icon"
         className="userIcon"
       />
-      <input className="searchBar" type="text" placeholder="Search Here" />
     </div>
   </>
 );
