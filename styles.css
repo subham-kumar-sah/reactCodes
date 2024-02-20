@@ -4,18 +4,31 @@
 
 .header{
     display: flex;
-    height: 30;
-    text-align: center;
+    height: 50;
+    background-color: aquamarine;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .icon{
-    width: 30;
+    cursor: pointer;
+    width: 50px;
 }
 
 .searchBar{
-    border-radius: 20px;
+    border-radius: 10px;
+    border: none;
+    width: 400;
+    height: 30px;
+    padding: 15px;
 }
 
 .userIcon{
     display: inline-block;
+    cursor: pointer;
+}
+
+.searchBar:focus{
+    outline-color: rgb(15, 128, 233);
+    outline-style: double;
 }
