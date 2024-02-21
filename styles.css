@@ -1,4 +1,4 @@
-.heading{
+/* .heading{
     background-color: red;
 }
 
@@ -31,4 +31,23 @@
 .searchBar:focus{
     outline-color: rgb(15, 128, 233);
     outline-style: double;
+} */
+
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    width: 80px;
+}
+
+.nav-items ul{
+    display: flex;
+    padding: 10px;
+}
+
+.nav-items ul li{
+    list-style: none;
+    margin: 10px;
 }
