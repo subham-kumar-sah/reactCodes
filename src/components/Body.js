@@ -6,6 +6,14 @@ const Body = () => {
   const [filteredList, setFilteredList] = useState(data);
   const [searchText, setSearchText] = useState("");
 
+  const fetchdata = async () => {
+    const apiData = await fetch(
+      "https://proxy.cros.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.8683714&lng=88.4032503&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await apiData.json();
+    console.log(json);
+  };
+
   const filterMethod = (val) => {
     console.log(val);
     const filteredData = data.filter((ele) => {
@@ -24,6 +32,7 @@ const Body = () => {
   // };
 
   useEffect(() => {
+    fetchdata();
     if (searchText === "") {
       setFilteredList(data);
     } else {
