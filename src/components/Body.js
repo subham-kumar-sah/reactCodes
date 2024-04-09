@@ -8,7 +8,7 @@ const Body = () => {
 
   const fetchdata = async () => {
     const apiData = await fetch(
-      "https://proxy.cros.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.8683714&lng=88.4032503&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.8683714&lng=88.4032503&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await apiData.json();
     console.log(json);
