@@ -1,21 +1,27 @@
 import ResCards from "./ResCards";
-import resList from "../util/mockData";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
+import { DATA_URL } from "../util/constants";
+import { Link } from "react-router-dom";
+
 const Body = () => {
-  const [data, setData] = useState(resList);
+  const [data, setData] = useState([]);
   const [filteredList, setFilteredList] = useState(data);
   const [searchText, setSearchText] = useState("");
 
   const fetchdata = async () => {
-    const apiData = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.8683714&lng=88.4032503&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const apiData = await fetch(DATA_URL);
     const json = await apiData.json();
     console.log(json);
+    setData(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredList(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   const filterMethod = (val) => {
-    console.log(val);
     const filteredData = data.filter((ele) => {
       if (ele.info.name.toLocaleLowerCase().includes(val.toLocaleLowerCase())) {
         return ele;
@@ -33,12 +39,24 @@ const Body = () => {
 
   useEffect(() => {
     fetchdata();
+  }, []);
+
+  useEffect(() => {
     if (searchText === "") {
       setFilteredList(data);
     } else {
       filterMethod(searchText);
     }
   }, [searchText]);
+
+  // Not the correct way
+  // if (filteredList.length === 0) {
+  //   return (
+  //     <div>
+  //       <Shimmer />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="body">
@@ -64,11 +82,23 @@ const Body = () => {
           }}
         />
       </div>
-      <div className="res-container">
-        {filteredList.map((ele) => {
-          return <ResCards resData={ele} key={ele.info.id} />;
-        })}
-      </div>
+      {filteredList.length === 0 ? (
+        <Shimmer />
+      ) : (
+        <div className="res-container">
+          {filteredList.map((ele) => {
+            return (
+              <Link
+                className="link-cards"
+                key={ele?.info?.id}
+                to={`restraunts/${ele?.info?.id}`}
+              >
+                <ResCards resData={ele} />
+              </Link>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
