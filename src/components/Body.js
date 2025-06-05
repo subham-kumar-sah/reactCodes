@@ -30,6 +30,15 @@ const Body = () => {
     setFilteredList(filteredData);
   };
 
+  const topRatedFilter = () => {
+    const topRatedData = data.filter((ele) => {
+      if (ele.info.avgRating >= 4.2) {
+        return ele;
+      }
+    });
+    setFilteredList(topRatedData);
+  };
+
   // const handleKeyPress = () => {
   //   // if (event.key === "Enter") {
   //   //   filterMethod(searchText);
@@ -70,7 +79,7 @@ const Body = () => {
           value={searchText}
         />
         <img
-          className="serach-icon"
+          className="search-icon"
           src={
             !searchText
               ? "https://cdn-icons-png.flaticon.com/128/54/54481.png"
@@ -81,6 +90,9 @@ const Body = () => {
             setSearchText("");
           }}
         />
+        <button onClick={topRatedFilter} className="top-rated">
+          Top Rated
+        </button>
       </div>
       {filteredList.length === 0 ? (
         <Shimmer />
