@@ -14,10 +14,10 @@ const Body = () => {
     const json = await apiData.json();
     console.log(json);
     setData(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
     setFilteredList(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
@@ -94,11 +94,11 @@ const Body = () => {
           Top Rated
         </button>
       </div>
-      {filteredList.length === 0 ? (
+      {filteredList?.length === 0 ? (
         <Shimmer />
       ) : (
         <div className="res-container">
-          {filteredList.map((ele) => {
+          {filteredList?.map((ele) => {
             return (
               <Link
                 className="link-cards"

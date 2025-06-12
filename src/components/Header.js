@@ -1,6 +1,13 @@
 import { LOGO_URL } from "../util/constants";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 export const Header = () => {
+  const [logged, setLogged] = useState("Login");
+
+  useEffect(() => {
+    console.log("Header Rendered");
+  });
+
   return (
     <div className="header">
       <div className="logo-container">
@@ -29,6 +36,16 @@ export const Header = () => {
             </Link>
           </li>
           <li>Cart</li>
+          <li>
+            <button
+              onClick={() =>
+                logged === "Login" ? setLogged("Logout") : setLogged("Login")
+              }
+              className="login-btn"
+            >
+              {logged}
+            </button>
+          </li>
         </ul>
       </div>
     </div>
