@@ -5,7 +5,7 @@ export const LOGO_URL =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLKliR_RmHKr_GOPXc1-oBOKFLyGuDwnZiIA&usqp=CAU";
 
 export const DATA_URL =
-  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+  "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.905313341310537&lng=77.60484988342812&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
 export const MENU_URL =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.8683714&lng=88.4032503&restaurantId=";

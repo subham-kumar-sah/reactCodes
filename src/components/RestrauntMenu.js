@@ -1,18 +1,31 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestrauntMenu from "../util/useRestrauntMenu";
+import { MENU_URL } from "../util/constants";
 
 const RestrauntMenu = () => {
   const [details, setDetails] = useState({});
   const { resId } = useParams();
   const [entireMenu, setEntireMenu] = useState([]);
   const [openAccordion, setOpenAccordion] = useState(null);
-  const menuInfo = useRestrauntMenu(resId);
+  const [menuInfo, setMenuInfo] = useState([]);
 
-  if (menuInfo === null) {
-    return <Shimmer />;
-  }
+  //setMenuInfo(useRestrauntMenu(resId));
+
+  useEffect(() => {
+    fetchMenu(resId);
+  }, []);
+
+  const fetchMenu = async (resId) => {
+    const data = await fetch(
+      MENU_URL + resId + "&catalog_qa=undefined&submitAction=ENTER"
+    );
+    const json = await data.json();
+    //setResInfo(json.data.cards);
+    setMenuInfo(json.data.cards);
+    console.log("Res Info:", json.data.cards);
+  };
 
   useEffect(() => {
     if (menuInfo?.length !== 0) {
@@ -39,11 +52,13 @@ const RestrauntMenu = () => {
     setOpenAccordion(openAccordion === title ? null : title);
   };
 
-  return (
+  return menuInfo === null ? (
+    <Shimmer />
+  ) : (
     <div>
       <h1 className="restaurant-name">{details.name}</h1>
       <h3 className="restaurant-details">
-        {details?.cuisines.join(", ")} - {details?.costForTwoMessage}
+        {(details?.cuisines || []).join(", ")} - {details?.costForTwoMessage}
       </h3>
       {entireMenu.map((ele) => (
         <div key={ele.title} className="accordion">
@@ -58,7 +73,7 @@ const RestrauntMenu = () => {
           </div>
           {openAccordion === ele.title && (
             <ul className="accordion-content">
-              {ele.itemCards.map((item) => (
+              {ele?.itemCards.map((item) => (
                 <li key={item.card.info.id}>
                   {item?.card?.info?.name} -{" Rs. "}
                   {item?.card?.info?.price / 100 ||

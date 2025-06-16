@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MENU_URL } from "./constants";
 
 const useRestrauntMenu = (resId) => {
-  const [menuInfo, setMenuInfo] = useState(null);
+  const [resInfo, setResInfo] = useState(null);
 
   useEffect(() => {
     fetchMenu(resId);
@@ -13,11 +13,11 @@ const useRestrauntMenu = (resId) => {
       MENU_URL + resId + "&catalog_qa=undefined&submitAction=ENTER"
     );
     const json = await data.json();
-    setMenuInfo(json.data.cards);
-    console.log("Menu Info:", json.data.cards);
+    setResInfo(json.data.cards);
+    console.log("Res Info:", json.data.cards);
   };
 
-  return menuInfo;
+  if (resInfo !== null) return resInfo;
 };
 
 export default useRestrauntMenu;
