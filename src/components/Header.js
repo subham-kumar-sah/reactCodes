@@ -1,8 +1,10 @@
 import { LOGO_URL } from "../util/constants";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import useUserStatus from "../util/useUserStatus";
 export const Header = () => {
   const [logged, setLogged] = useState("Login");
+  const isOnline = useUserStatus();
 
   useEffect(() => {
     console.log("Header Rendered");
@@ -20,6 +22,7 @@ export const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
+          <li>Internet: {isOnline ? "✅" : "🔴"}</li>
           <li>
             <Link className="linkStyle" to="/">
               Home
@@ -33,6 +36,11 @@ export const Header = () => {
           <li>
             <Link className="linkStyle" to="/contact">
               Contact Us
+            </Link>
+          </li>
+          <li>
+            <Link className="linkStyle" to="/grocery">
+              Grocery
             </Link>
           </li>
           <li>Cart</li>

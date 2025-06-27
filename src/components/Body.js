@@ -1,25 +1,17 @@
 import ResCards from "./ResCards";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import { DATA_URL } from "../util/constants";
 import { Link } from "react-router-dom";
+import useRestaurantData from "../util/useRestaurantData";
+import useUserStatus from "../util/useUserStatus";
+import OfflineNotice from "./OfflineNotice";
 
 const Body = () => {
-  const [data, setData] = useState([]);
+  const data = useRestaurantData();
   const [filteredList, setFilteredList] = useState(data);
   const [searchText, setSearchText] = useState("");
-
-  const fetchdata = async () => {
-    const apiData = await fetch(DATA_URL);
-    const json = await apiData.json();
-    console.log(json);
-    setData(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredList(
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  };
+  const isLoading = !data || data.length === 0;
+  const isOnline = useUserStatus();
 
   const filterMethod = (val) => {
     const filteredData = data.filter((ele) => {
@@ -47,16 +39,13 @@ const Body = () => {
   // };
 
   useEffect(() => {
-    fetchdata();
-  }, []);
-
-  useEffect(() => {
+    setFilteredList(data);
     if (searchText === "") {
       setFilteredList(data);
     } else {
       filterMethod(searchText);
     }
-  }, [searchText]);
+  }, [searchText, data]);
 
   // Not the correct way
   // if (filteredList.length === 0) {
@@ -66,6 +55,10 @@ const Body = () => {
   //     </div>
   //   );
   // }
+
+  if (!isOnline) {
+    return <OfflineNotice />;
+  }
 
   return (
     <div className="body">
@@ -94,7 +87,7 @@ const Body = () => {
           Top Rated
         </button>
       </div>
-      {filteredList?.length === 0 ? (
+      {isLoading ? (
         <Shimmer />
       ) : (
         <div className="res-container">

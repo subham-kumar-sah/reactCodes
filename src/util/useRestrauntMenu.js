@@ -5,19 +5,17 @@ const useRestrauntMenu = (resId) => {
   const [resInfo, setResInfo] = useState(null);
 
   useEffect(() => {
-    fetchMenu(resId);
-  }, []);
+    const fetchMenu = async () => {
+      const data = await fetch(
+        MENU_URL + resId + "&catalog_qa=undefined&submitAction=ENTER"
+      );
+      const json = await data.json();
+      setResInfo(json.data.cards);
+    };
+    if (resId) fetchMenu();
+  }, [resId]);
 
-  const fetchMenu = async (resId) => {
-    const data = await fetch(
-      MENU_URL + resId + "&catalog_qa=undefined&submitAction=ENTER"
-    );
-    const json = await data.json();
-    setResInfo(json.data.cards);
-    console.log("Res Info:", json.data.cards);
-  };
-
-  if (resInfo !== null) return resInfo;
+  return resInfo;
 };
 
 export default useRestrauntMenu;
