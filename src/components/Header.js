@@ -5,19 +5,6 @@ import useUserStatus from "../util/useUserStatus";
 export const Header = () => {
   const [logged, setLogged] = useState("Login");
   const isOnline = useUserStatus();
-  const [theme, setTheme] = useState("light");
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
 
   return (
     <div className="flex justify-between light bg-orange-100 shadow-lg h-25">
@@ -65,14 +52,6 @@ export const Header = () => {
                transition-colors duration-150"
             >
               {logged}
-            </button>
-          </li>
-          <li className="px-3">
-            <button
-              onClick={toggleTheme}
-              className="cursor-pointer bg-orange-200 rounded-md h-7 w-20 hover:bg-orange-300 transition-colors duration-150"
-            >
-              {theme === "light" ? "🌙 Dark" : "☀️ Light"}
             </button>
           </li>
         </ul>
