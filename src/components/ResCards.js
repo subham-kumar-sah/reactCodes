@@ -6,14 +6,17 @@ const ResCards = (props) => {
     resData.info;
   const { deliveryTime } = resData.info.sla;
   return (
-    <div className="res-cards">
+    <div
+      className="m-4 p-4 w-60 h-105 bg-orange-50 hover:bg-orange-100 rounded-md hover:shadow-lg
+       shadow-orange-300 duration-150 transition-transform hover:scale-90"
+    >
       <img
-        className="res-logo"
+        className="w-60 h-40 rounded-md justify-center mx-auto "
         src={CDN_URL + cloudinaryImageId}
         alt="res-logo"
       />
-      <div className="res-card-content">
-        <h4>{name}</h4>
+      <div className="">
+        <h4 className="font-bold py-4 text-lg">{name}</h4>
         <p>{cuisines.join(", ")}</p>
         <p>{avgRating}⭐</p>
         <p>{deliveryTime} mins away</p>

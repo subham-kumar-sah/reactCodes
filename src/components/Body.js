@@ -24,7 +24,7 @@ const Body = () => {
 
   const topRatedFilter = () => {
     const topRatedData = data.filter((ele) => {
-      if (ele.info.avgRating >= 4.2) {
+      if (ele.info.avgRating >= 4.4) {
         return ele;
       }
     });
@@ -61,10 +61,11 @@ const Body = () => {
   }
 
   return (
-    <div className="body">
-      <div className="search-bar-container">
+    <div className="body bg-orange-50  ">
+      <div className="relative w-120 my-4 p-4 flex items-center">
         <input
-          className="search-bar"
+          className=" w-80 border border-solid rounded-md py-2 pl-4 pr-10 border-orange-200
+           focus:outline-none focus:border-orange-400 bg-orange-50 focus:shadow-md shadow-orange-200"
           placeholder="Search your restraunts here"
           onChange={(ele) => {
             setSearchText(ele.target.value);
@@ -72,7 +73,8 @@ const Body = () => {
           value={searchText}
         />
         <img
-          className="search-icon"
+          className="absolute top-1/2 right-1/3 -translate-y-1/2 w-6 h-6 cursor-pointer 
+          transition-transform duration-150 hover:scale-110"
           src={
             !searchText
               ? "https://cdn-icons-png.flaticon.com/128/54/54481.png"
@@ -82,15 +84,20 @@ const Body = () => {
             setFilteredList(data);
             setSearchText("");
           }}
+          alt="search/clear"
         />
-        <button onClick={topRatedFilter} className="top-rated">
+        <button
+          onClick={topRatedFilter}
+          className="h-10 ml-4 px-4 cursor-pointer bg-orange-200 rounded-md 
+          transition-colors duration-150 hover:bg-orange-300"
+        >
           Top Rated
         </button>
       </div>
       {isLoading ? (
         <Shimmer />
       ) : (
-        <div className="res-container">
+        <div className="flex flex-wrap">
           {filteredList?.map((ele) => {
             return (
               <Link
