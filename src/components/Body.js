@@ -13,6 +13,8 @@ const Body = () => {
   const isLoading = !data || data.length === 0;
   const isOnline = useUserStatus();
 
+  console.log("Data in Body:", data);
+
   const filterMethod = (val) => {
     const filteredData = data.filter((ele) => {
       if (ele.info.name.toLocaleLowerCase().includes(val.toLocaleLowerCase())) {
