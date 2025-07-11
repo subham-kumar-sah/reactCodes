@@ -7,7 +7,6 @@ const useRestaurantData = () => {
     const fetchdata = async () => {
       const apiData = await fetch(DATA_URL);
       const json = await apiData.json();
-      console.log(json);
       setRestaurantData(
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants

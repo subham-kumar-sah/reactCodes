@@ -1,4 +1,4 @@
-import ResCards from "./ResCards";
+import ResCards, { WithVeglabel, WithNonVeglabel } from "./ResCards";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -12,8 +12,8 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const isLoading = !data || data.length === 0;
   const isOnline = useUserStatus();
-
-  console.log("Data in Body:", data);
+  const ResCardsWithVegLabel = WithVeglabel(ResCards);
+  const ResCardsWithNVegLabel = WithNonVeglabel(ResCards);
 
   const filterMethod = (val) => {
     const filteredData = data.filter((ele) => {
@@ -63,7 +63,7 @@ const Body = () => {
   }
 
   return (
-    <div className="body bg-orange-50  ">
+    <div className="body bg-orange-50 ">
       <div className="relative w-120 my-4 p-4 flex items-center">
         <input
           className=" w-80 border border-solid rounded-md py-2 pl-4 pr-10 border-orange-200
@@ -107,7 +107,11 @@ const Body = () => {
                 key={ele?.info?.id}
                 to={`restraunts/${ele?.info?.id}`}
               >
-                <ResCards resData={ele} />
+                {ele?.info?.veg ? (
+                  <ResCardsWithVegLabel resData={ele} />
+                ) : (
+                  <ResCardsWithNVegLabel resData={ele} />
+                )}
               </Link>
             );
           })}

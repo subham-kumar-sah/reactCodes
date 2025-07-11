@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import useRestrauntMenu from "../util/useRestrauntMenu";
 import useUserStatus from "../util/useUserStatus";
 import OfflineNotice from "./OfflineNotice";
+import RestrauntMenuCategory from "./RestrauntMenuCategory";
 
 const RestrauntMenu = () => {
   const [details, setDetails] = useState({});
@@ -55,41 +56,11 @@ const RestrauntMenu = () => {
         {(details?.cuisines || []).join(", ")} - {details?.costForTwoMessage}
       </h3>
       {entireMenu.map((ele) => (
-        <div
-          key={ele.title}
-          className="mb-4 border border-orange-200 text-orange-400 rounded-lg overflow-hidden accordion bg-orange-50"
-        >
-          <div
-            className="flex justify-between items-center px-4 py-3 cursor-pointer bg-orange-100
-             hover:bg-orange-200 transition-colors accordion-header"
-            onClick={() => toggleAccordion(ele.title)}
-          >
-            <h2 className="text-lg accordion-icon">{ele.title}</h2>
-            <div className="accordion-icon">
-              {openAccordion === ele.title ? "▼" : "►"}
-            </div>
-          </div>
-          {openAccordion === ele.title && (
-            <ul className="px-6 py-4 bg-orange-50 accordion-content">
-              {ele?.itemCards.map((item) => (
-                <li
-                  key={item.card.info.id}
-                  className="py-2 border-b border-orange-100 last:border-b-0 flex 
-                  justify-between items-center"
-                >
-                  <span className="text-orange-400 font-medium">
-                    {item?.card?.info?.name}
-                  </span>
-                  <span className="text-green-600 font-medium">
-                    ₹
-                    {item?.card?.info?.price / 100 ||
-                      item?.card?.info?.defaultPrice / 100}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <RestrauntMenuCategory
+          data={ele}
+          openAccordion={openAccordion}
+          toggleAccordion={toggleAccordion}
+        />
       ))}
     </div>
   );

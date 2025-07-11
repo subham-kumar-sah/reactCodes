@@ -26,4 +26,34 @@ const ResCards = (props) => {
   );
 };
 
+export const WithVeglabel = (ResCards) => {
+  return (props) => {
+    return (
+      <div className="relative">
+        <img
+          className="absolute top-4 left-8 w-6 h-6 rounded-md z-10 shadow-md"
+          src="https://i.pinimg.com/736x/e4/1f/f3/e41ff3b10a26b097602560180fb91a62.jpg"
+          alt="image"
+        />
+        <ResCards {...props} />
+      </div>
+    );
+  };
+};
+
+export const WithNonVeglabel = (ResCards) => {
+  return (props) => {
+    return (
+      <div className="relative">
+        <img
+          className="absolute top-4 left-8 w-6 h-6 rounded-md z-10 shadow-md"
+          src="https://www.kindpng.com/picc/m/151-1515155_veg-icon-png-non-veg-symbol-png-transparent.png"
+          alt="image"
+        />
+        <ResCards {...props} />
+      </div>
+    );
+  };
+};
+
 export default ResCards;
