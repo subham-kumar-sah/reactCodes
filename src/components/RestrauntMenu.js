@@ -57,6 +57,7 @@ const RestrauntMenu = () => {
       </h3>
       {entireMenu.map((ele) => (
         <RestrauntMenuCategory
+          key={ele.id}
           data={ele}
           openAccordion={openAccordion}
           toggleAccordion={toggleAccordion}

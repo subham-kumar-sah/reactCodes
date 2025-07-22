@@ -7,7 +7,7 @@ const ResCards = (props) => {
   const { deliveryTime } = resData.info.sla;
   return (
     <div
-      className="m-4 p-4 w-60 h-105 bg-orange-50 hover:bg-orange-100 rounded-md hover:shadow-lg
+      className="m-4 p-4 w-60 h-115 bg-orange-50 hover:bg-orange-100 rounded-md hover:shadow-lg
        shadow-orange-300 duration-150 transition-transform hover:scale-90"
     >
       <img

@@ -1,10 +1,11 @@
 import ResCards, { WithVeglabel, WithNonVeglabel } from "./ResCards";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurantData from "../util/useRestaurantData";
 import useUserStatus from "../util/useUserStatus";
 import OfflineNotice from "./OfflineNotice";
+import UserContext from "../util/UserContext";
 
 const Body = () => {
   const data = useRestaurantData();
@@ -14,6 +15,7 @@ const Body = () => {
   const isOnline = useUserStatus();
   const ResCardsWithVegLabel = WithVeglabel(ResCards);
   const ResCardsWithNVegLabel = WithNonVeglabel(ResCards);
+  const { setUserName, loggedInUser } = useContext(UserContext);
 
   const filterMethod = (val) => {
     const filteredData = data.filter((ele) => {
@@ -64,37 +66,47 @@ const Body = () => {
 
   return (
     <div className="body bg-orange-50 ">
-      <div className="relative w-120 my-4 p-4 flex items-center">
-        <input
-          className=" w-80 border border-solid rounded-md py-2 pl-4 pr-10 border-orange-200
-           focus:outline-none focus:border-orange-400 bg-orange-50 focus:shadow-md shadow-orange-200"
-          placeholder="Search your restraunts here"
-          onChange={(ele) => {
-            setSearchText(ele.target.value);
-          }}
-          value={searchText}
-        />
-        <img
-          className="absolute top-1/2 right-1/3 -translate-y-1/2 w-6 h-6 cursor-pointer 
-          transition-transform duration-150 hover:scale-110"
-          src={
-            !searchText
-              ? "https://cdn-icons-png.flaticon.com/128/54/54481.png"
-              : "https://cdn-icons-png.flaticon.com/128/2961/2961937.png"
-          }
-          onClick={() => {
-            setFilteredList(data);
-            setSearchText("");
-          }}
-          alt="search/clear"
-        />
+      <div className="relative w-200 my-4 p-4 flex items-center">
+        <div className="relative">
+          <input
+            className="w-80 border border-solid rounded-md py-2 pl-4 pr-10 border-orange-200
+        focus:outline-none focus:border-orange-400 bg-orange-50 focus:shadow-md shadow-orange-200"
+            placeholder="Search your restraunts here"
+            onChange={(ele) => {
+              setSearchText(ele.target.value);
+            }}
+            value={searchText}
+          />
+          <img
+            className="absolute top-1/2 right-3 -translate-y-1/2 w-6 h-6 cursor-pointer 
+        transition-transform duration-150 hover:scale-110"
+            src={
+              !searchText
+                ? "https://cdn-icons-png.flaticon.com/128/54/54481.png"
+                : "https://cdn-icons-png.flaticon.com/128/2961/2961937.png"
+            }
+            onClick={() => {
+              setFilteredList(data);
+              setSearchText("");
+            }}
+            alt="search/clear"
+          />
+        </div>
         <button
           onClick={topRatedFilter}
-          className="h-10 ml-4 px-4 cursor-pointer bg-orange-200 rounded-md 
+          className="h-10 w-40 ml-4 px-4 cursor-pointer bg-orange-200 rounded-md 
           transition-colors duration-150 hover:bg-orange-300"
         >
           Top Rated
         </button>
+        <div className="ml-8">
+          <input
+            className="w-64 border border-orange-200 rounded-md py-2 px-4 bg-white 
+            focus:outline-none focus:border-orange-400 shadow-sm"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       {isLoading ? (
         <Shimmer />

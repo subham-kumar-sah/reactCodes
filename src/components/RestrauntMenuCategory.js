@@ -21,7 +21,8 @@ const RestrauntMenuCategory = ({ data, openAccordion, toggleAccordion }) => {
         <ul className="px-6 py-4 bg-orange-50">
           {data?.itemCards.map((item) => (
             <div
-              className="flex justify-between items-start mb-4"
+              className="flex justify-between items-start mb-4 border-b border-orange-200 
+              last:border-b-0 pb-4"
               key={item.card.info.id}
             >
               <div key={item.card.info.id} className="w-8/12">
@@ -39,23 +40,21 @@ const RestrauntMenuCategory = ({ data, openAccordion, toggleAccordion }) => {
                   {item.card.info.description}
                 </p>
               </div>
-              <div className="flex flex-col items-center w-2/12 relative">
+              <div className="flex flex-col items-center w-2/12 relative mb-8">
                 <img
                   src={CDN_URL + item.card.info.imageId}
-                  className=" border-bg-orange-100 rounded-md "
+                  className=" border-bg-orange-100 rounded-md h-30 w-35"
                 />
-                <div
-                  className="w-15 h-8 cursor-pointer border border-orange-100 bg-orange-200
-                rounded-md flex items-center justify-center hover:bg-orange-300
-                 active:bg-orange-400 active:scale-95 transition-all duration-150 mt-2 
-                absolute top-25 right-9 shadow-md shadow-orange-300 focus:outline-none
-                 focus:ring-2 focus:ring-orange-300"
+                <button
+                  className="w-15 h-8 cursor-pointer border bg-orange-100
+                rounded-md flex items-center justify-center hover:bg-orange-200 mt-2 
+                absolute top-25 right-9 shadow-md shadow-orange-300 "
                   onClick={() =>
                     console.log("Add to cart", item.card.info.name)
                   }
                 >
                   Add +
-                </div>
+                </button>
               </div>
             </div>
           ))}

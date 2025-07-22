@@ -103,3 +103,12 @@
 // </div>
 // </>
 // );
+
+# Redux Toolkit
+
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to our app
+- Create a cart slice
+- Dispatch action
+- Read data using Selector
