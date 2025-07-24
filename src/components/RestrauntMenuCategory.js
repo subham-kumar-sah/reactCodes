@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { CDN_URL } from "../util/constants";
+import { useDispatch } from "react-redux";
+import { addItems } from "../util/slices/cartSlice";
 
 const RestrauntMenuCategory = ({ data, openAccordion, toggleAccordion }) => {
+  const dispatch = useDispatch();
+  const handleAddItem = (val) => {
+    dispatch(addItems(val));
+  };
   return (
     <div
       key={data.title}
@@ -49,9 +55,7 @@ const RestrauntMenuCategory = ({ data, openAccordion, toggleAccordion }) => {
                   className="w-15 h-8 cursor-pointer border bg-orange-100
                 rounded-md flex items-center justify-center hover:bg-orange-200 mt-2 
                 absolute top-25 right-9 shadow-md shadow-orange-300 "
-                  onClick={() =>
-                    console.log("Add to cart", item.card.info.name)
-                  }
+                  onClick={() => handleAddItem(item)}
                 >
                   Add +
                 </button>

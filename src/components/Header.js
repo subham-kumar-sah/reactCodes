@@ -49,7 +49,18 @@ export const Header = () => {
               Grocery
             </Link>
           </li>
-          <li className="px-3">Cart-{cartItems.length}</li>
+          <li className="px-3">
+            <Link className="linkStyle" to="/cart">
+              <div className="flex items-center relative">
+                <img
+                  className="w-8 h-8 cursor-pointer"
+                  src="https://cdn-icons-png.flaticon.com/128/1170/1170678.png"
+                  alt="cart"
+                />
+                {cartItems.length}
+              </div>
+            </Link>
+          </li>
           <li className="px-3">
             <button
               onClick={() =>
