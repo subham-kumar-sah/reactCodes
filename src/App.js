@@ -7,7 +7,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import RestrauntMenu from "./components/RestrauntMenu";
+import RestaurantMenu from "./components/RestaurantMenu";
 import ScrollToTop from "./components/ScrollToTop";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./util/UserContext";
@@ -66,8 +66,8 @@ const Route = createBrowserRouter([
         ),
       },
       {
-        path: "/restraunts/:resId",
-        element: <RestrauntMenu />,
+        path: "/restaurants/:resId",
+        element: <RestaurantMenu />,
       },
       {
         path: "/cart",

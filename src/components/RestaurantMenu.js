@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
-import useRestrauntMenu from "../util/useRestrauntMenu";
+import useRestaurantMenu from "../util/useRestaurantMenu";
 import useUserStatus from "../util/useUserStatus";
 import OfflineNotice from "./OfflineNotice";
-import RestrauntMenuCategory from "./RestrauntMenuCategory";
+import RestaurantMenuCategory from "./RestaurantMenuCategory";
 
-const RestrauntMenu = () => {
+const RestaurantMenu = () => {
   const [details, setDetails] = useState({});
   const [entireMenu, setEntireMenu] = useState([]);
   const [openAccordion, setOpenAccordion] = useState(null);
   const { resId } = useParams();
-  const menuInfo = useRestrauntMenu(resId);
+  const menuInfo = useRestaurantMenu(resId);
   const isOnline = useUserStatus();
 
   useEffect(() => {
@@ -56,7 +56,7 @@ const RestrauntMenu = () => {
         {(details?.cuisines || []).join(", ")} - {details?.costForTwoMessage}
       </h3>
       {entireMenu.map((ele) => (
-        <RestrauntMenuCategory
+        <RestaurantMenuCategory
           key={ele.id}
           data={ele}
           openAccordion={openAccordion}
@@ -67,4 +67,4 @@ const RestrauntMenu = () => {
   );
 };
 
-export default RestrauntMenu;
+export default RestaurantMenu;

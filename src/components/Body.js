@@ -71,7 +71,7 @@ const Body = () => {
           <input
             className="w-80 border border-solid rounded-md py-2 pl-4 pr-10 border-orange-200
         focus:outline-none focus:border-orange-400 bg-orange-50 focus:shadow-md shadow-orange-200"
-            placeholder="Search your restraunts here"
+            placeholder="Search your restaurants here"
             onChange={(ele) => {
               setSearchText(ele.target.value);
             }}
@@ -117,7 +117,7 @@ const Body = () => {
               <Link
                 className="link-cards"
                 key={ele?.info?.id}
-                to={`restraunts/${ele?.info?.id}`}
+                to={`restaurants/${ele?.info?.id}`}
               >
                 {ele?.info?.veg ? (
                   <ResCardsWithVegLabel resData={ele} />

@@ -3,7 +3,7 @@ import { CDN_URL } from "../util/constants";
 import { useDispatch } from "react-redux";
 import { addItems } from "../util/slices/cartSlice";
 
-const RestrauntMenuCategory = ({ data, openAccordion, toggleAccordion }) => {
+const RestaurantMenuCategory = ({ data, openAccordion, toggleAccordion }) => {
   const dispatch = useDispatch();
   const handleAddItem = (val) => {
     dispatch(addItems(val));
@@ -68,4 +68,4 @@ const RestrauntMenuCategory = ({ data, openAccordion, toggleAccordion }) => {
   );
 };
 
-export default RestrauntMenuCategory;
+export default RestaurantMenuCategory;
