@@ -14,7 +14,6 @@ const useRestaurantMenu = (resId) => {
     };
     if (resId) fetchMenu();
   }, [resId]);
-  console.log("Restraunt Menu Data:", resInfo);
   return resInfo;
 };
 

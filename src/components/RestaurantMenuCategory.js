@@ -1,18 +1,68 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { CDN_URL } from "../util/constants";
-import { useDispatch } from "react-redux";
-import { addItems } from "../util/slices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addItems, forceAddItems } from "../util/slices/cartSlice";
 
 const RestaurantMenuCategory = ({ data, openAccordion, toggleAccordion }) => {
+  const cartRestaurantId = useSelector((store) => store.cart.restaurantId);
+  const { restaurantId } = useParams();
   const dispatch = useDispatch();
-  const handleAddItem = (val) => {
-    dispatch(addItems(val));
+  const [showModal, setShowModal] = useState(false);
+  const [pendingItem, setPendingItem] = useState(null);
+
+  const handleAddItem = (item, restaurantId) => {
+    console.log(item, restaurantId);
+    if (!cartRestaurantId || cartRestaurantId === restaurantId) {
+      dispatch({ type: addItems.type, payload: item, meta: { restaurantId } });
+    } else {
+      setPendingItem({ item, restaurantId });
+      setShowModal(true);
+    }
   };
+  const handleConfirm = () => {
+    dispatch({
+      type: forceAddItems.type,
+      payload: pendingItem.item,
+      meta: { restaurantId: pendingItem.restaurantId },
+    });
+    setShowModal(false);
+    setPendingItem(null);
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
+    setPendingItem(null);
+  };
+
   return (
     <div
       key={data.title}
       className="mb-4 border border-orange-200 text-orange-400 rounded-lg overflow-hidden accordion bg-orange-50"
     >
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
+          <div className="bg-white p-6 rounded shadow-lg text-center">
+            <p className="mb-4 text-orange-500 font-semibold">
+              Your cart contains items from another restaurant.
+              <br />
+              Discard all and add from this restaurant?
+            </p>
+            <button
+              className="bg-red-500 text-white px-4 py-2 rounded mr-2"
+              onClick={handleConfirm}
+            >
+              Discard & Add
+            </button>
+            <button
+              className="bg-gray-300 px-4 py-2 rounded"
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
       <div
         className="flex justify-between items-center px-4 py-3 cursor-pointer bg-orange-100
              hover:bg-orange-200 transition-colors accordion-header"
@@ -55,7 +105,7 @@ const RestaurantMenuCategory = ({ data, openAccordion, toggleAccordion }) => {
                   className="w-15 h-8 cursor-pointer border bg-orange-100
                 rounded-md flex items-center justify-center hover:bg-orange-200 mt-2 
                 absolute top-25 right-9 shadow-md shadow-orange-300 "
-                  onClick={() => handleAddItem(item)}
+                  onClick={() => handleAddItem(item, restaurantId)}
                 >
                   Add +
                 </button>
